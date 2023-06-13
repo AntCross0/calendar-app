@@ -5,6 +5,7 @@ import 'moment/locale/es';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { messages_Es } from '../../helpers/calendar-language-es';
 import CalendarEvent from './CalendarEvent';
+import CalendarModal from './CalendarModal';
 
 
 
@@ -81,6 +82,8 @@ const HomeScreen = () => {
                     event: CalendarEvent
                 }}
             />
+
+            <CalendarModal />
         </div>
     )
 }
