@@ -64,3 +64,32 @@ code {
 }
 
 /* MODAL END */
+
+
+/* REACT DATETIME PICKER START */
+.react-datetime-picker__wrapper {
+  @apply rounded flex border-2 border-black/10 !important;
+}
+
+.react-datetime-picker__inputGroup {
+  @apply w-full text-center !important;
+}
+
+.react-datetime-picker__inputGroup>input {
+
+  @apply rounded w-12 p-2 bg-white text-slate-800 !important;
+}
+
+
+/* .react-datetime-picker__inputGroup__day,
+.react-datetime-picker__inputGroup__month,
+.react-datetime-picker__inputGroup__year {
+  @apply w-auto p-2 bg-slate-50 rounded text-center !important;
+}
+
+.react-datetime-picker__inputGroup__hour,
+.react-datetime-picker__inputGroup__minute {
+  @apply w-12 !important;
+} */
+
+/* REACT DATETIME PICKER END */
