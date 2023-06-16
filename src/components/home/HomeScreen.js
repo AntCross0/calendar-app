@@ -22,18 +22,6 @@ moment.locale('es'); // change the global locale to Spanish
 
 const localizer = momentLocalizer(moment);
 
-const events = [{
-    title: 'Mi tarea #1',
-    start: moment().toDate(),
-    end: moment().add(1, 'hours').toDate(),
-    user: {
-        _id: 1234,
-        name: 'Anthony'
-    },
-    bgcolor: 'blue',
-    notes: 'algo'
-}
-];
 
 
 
@@ -42,10 +30,9 @@ const events = [{
 const HomeScreen = () => {
 
     const dispatch = useDispatch();
+    const { events } = useSelector(state => state.rootReducer.calendar);
 
     let [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month');
-
-
 
     const onDoubleClick = (e) => {
         dispatch(uiOpenModal());

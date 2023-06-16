@@ -1,5 +1,5 @@
 import moment from 'moment/moment';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DateTimePicker from 'react-datetime-picker';
 import Modal from 'react-modal';
 import 'react-datetime-picker/dist/DateTimePicker.css';
@@ -7,6 +7,7 @@ import 'react-calendar/dist/Calendar.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { types } from '../../types/types';
 import { uiCloseModal } from '../../actions/ui';
+import { eventAddNew, eventClearActive, eventUpdated } from '../../actions/events';
 
 
 
@@ -24,19 +25,29 @@ const nowplus1h = now.clone().add(1, 'hours');
 
 const CalendarModal = () => {
 
-
-    const dispatch = useDispatch();
-
-    const { modalOpen } = useSelector(state => state.rootReducer.ui);
-
-    let [dateStart, setDateStart] = useState(now.toDate());
-    let [dateEnd, setDateEnd] = useState(nowplus1h.toDate());
-    let [formValues, setformValues] = useState({
+    const initEvent = {
         title: '',
         notes: '',
         start: now.toDate(),
         end: nowplus1h.toDate()
-    });
+    }
+
+    const dispatch = useDispatch();
+
+    const { modalOpen } = useSelector(state => state.rootReducer.ui);
+    const { activeEvent } = useSelector(state => state.rootReducer.calendar);
+
+    let [dateStart, setDateStart] = useState(now.toDate());
+    let [dateEnd, setDateEnd] = useState(nowplus1h.toDate());
+    let [formValues, setformValues] = useState(initEvent);
+
+
+
+    useEffect(() => {
+        if (activeEvent) {
+            setformValues(activeEvent);
+        }
+    }, [activeEvent, setformValues]);
 
 
     const { title, notes, start, end } = formValues;
@@ -51,6 +62,8 @@ const CalendarModal = () => {
 
     const closeModal = () => {
         dispatch(uiCloseModal(types.uiCloseModal));
+        dispatch(eventClearActive());
+        setformValues(initEvent);
     }
 
     const handleStartDateChange = (e) => {
@@ -69,7 +82,6 @@ const CalendarModal = () => {
         e.preventDefault();
         const momentStart = moment(start);
         const momentEnd = moment(end);
-        console.log('algo');
 
         if (momentStart.isSame(momentEnd)) {
             return alert('la fecha final no debe ser igual a la fecha de inicio');
@@ -78,6 +90,22 @@ const CalendarModal = () => {
             return alert('la fecha final debe ser mayor a la fecha de inicio');
         }
 
+
+        if (activeEvent) {
+            dispatch(eventUpdated(formValues))
+        }
+        else {
+
+            dispatch(eventAddNew({
+                ...formValues,
+                id: new Date().getTime(),
+                user: {
+                    name: 'Anthony',
+                    _ui: 21345
+                }
+            }))
+        }
+        setformValues(initEvent);
         closeModal();
 
     }
