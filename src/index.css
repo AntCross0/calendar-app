@@ -67,19 +67,9 @@ code {
 
 
 /* REACT DATETIME PICKER START */
+
 .react-datetime-picker__wrapper {
-  @apply rounded flex border-2 border-black/10 !important;
-}
-
-.react-datetime-picker__inputGroup {
-  @apply w-full !important;
-}
-
-
-.react-datetime-picker__inputGroup>input {
-
-  @apply outline-none border-none !important;
-
+  @apply rounded flex border-2 border-black/10 py-2 !important;
 }
 
 
@@ -88,33 +78,30 @@ code {
 }
 
 .react-datetime-picker__inputGroup__day,
-.react-datetime-picker__inputGroup__month {
-  @apply w-[3rem] text-end p-2 text-slate-900 !important;
-}
-
-.react-datetime-picker__inputGroup__year {
-  @apply w-[4rem] text-end p-2 text-slate-900 !important;
-}
-
-
 .react-datetime-picker__inputGroup__hour,
+.react-datetime-picker__inputGroup__month,
+.react-datetime-picker__inputGroup__year,
 .react-datetime-picker__inputGroup__minute {
-  @apply w-[3rem] text-end !important;
+  @apply text-center px-2 !important;
 }
 
-.react-calendar__navigation {
-  @apply bg-red-400
+.react-datetime-picker__inputGroup__day:focus,
+.react-datetime-picker__inputGroup__hour:focus,
+.react-datetime-picker__inputGroup__month:focus,
+.react-datetime-picker__inputGroup__year:focus,
+.react-datetime-picker__inputGroup__minute:focus {
+  @apply outline-none !important;
 }
+
+
+
+
+
 
 .react-calendar__navigation__arrow> {
   @apply bg-white mx-2 text-slate-900
 }
 
-.react-calendar__navigation__prev2-button,
-.react-calendar__navigation__prev-button {
-  @apply bg-white py-1 px-3 text-center mx-2 text-slate-900 my-1 rounded border-2 border-black/10
-}
-
 .react-calendar__month-view {}
 
-/* REACT DATETIME PICKER END */
+/*REACT DATETIME PICKER END */
