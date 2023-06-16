@@ -54,14 +54,12 @@ const CalendarModal = () => {
     }
 
     const handleStartDateChange = (e) => {
-        console.log(e);
         setDateStart(e);
         setformValues({ ...formValues, start: e });
 
     }
 
     const handleEndDateChange = (e) => {
-        console.log(e);
         setDateEnd(e);
         setformValues({ ...formValues, end: e });
     }

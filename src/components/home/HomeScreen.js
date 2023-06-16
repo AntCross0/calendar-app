@@ -8,6 +8,8 @@ import CalendarEvent from './CalendarEvent';
 import CalendarModal from './CalendarModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiOpenModal } from '../../actions/ui';
+import { eventsetActive, setActive } from '../../actions/events';
+import { types } from '../../types/types';
 
 
 
@@ -27,7 +29,9 @@ const events = [{
     user: {
         _id: 1234,
         name: 'Anthony'
-    }
+    },
+    bgcolor: 'blue',
+    notes: 'algo'
 }
 ];
 
@@ -44,12 +48,11 @@ const HomeScreen = () => {
 
 
     const onDoubleClick = (e) => {
-        console.log(e);
         dispatch(uiOpenModal());
     }
 
     const onSelectEvent = (e) => {
-        console.log(e);
+        dispatch(eventsetActive(e));
     }
 
     const onViewChange = (e) => {
@@ -69,6 +72,11 @@ const HomeScreen = () => {
         return {
             style
         }
+    }
+
+
+    const handleFabClick = () => {
+        dispatch(uiOpenModal());
     }
 
 
@@ -92,6 +100,13 @@ const HomeScreen = () => {
                     event: CalendarEvent
                 }}
             />
+
+
+            <button onClick={handleFabClick} className='transition-all hover:scale-110 hover:bg-blue-700 w-14 h-14 rounded-full text-center text-white font-black text-4xl absolute right-4 bottom-4 shadow-sm bg-blue-600'>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 mx-auto rounded">
+                    <path fillRule="evenodd" d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z" clipRule="evenodd" />
+                </svg>
+            </button>
 
             <CalendarModal />
         </div>

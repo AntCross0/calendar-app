@@ -7,6 +7,6 @@ import { rootReducer } from "../reducers/rootReducer";
 
 
 export const store = configureStore({
-    reducer: { rootReducer, middleware: applyMiddleware(thunk) }
+    reducer: { rootReducer, middleware: { middleware1: applyMiddleware(thunk) } }
 }
 )   
