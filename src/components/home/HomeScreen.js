@@ -6,6 +6,8 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { messages_Es } from '../../helpers/calendar-language-es';
 import CalendarEvent from './CalendarEvent';
 import CalendarModal from './CalendarModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { uiOpenModal } from '../../actions/ui';
 
 
 
@@ -30,13 +32,20 @@ const events = [{
 ];
 
 
+
+
+
 const HomeScreen = () => {
+
+    const dispatch = useDispatch();
 
     let [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month');
 
 
+
     const onDoubleClick = (e) => {
         console.log(e);
+        dispatch(uiOpenModal());
     }
 
     const onSelectEvent = (e) => {
@@ -74,6 +83,7 @@ const HomeScreen = () => {
                 startAccessor="start"
                 endAccessor="end"
                 messages={messages_Es}
+                onDoubleClickEvent={onDoubleClick}
                 eventPropGetter={eventStyleGetter}
                 onSelectEvent={onSelectEvent}
                 onView={onViewChange}
