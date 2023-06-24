@@ -47,6 +47,9 @@ const CalendarModal = () => {
         if (activeEvent) {
             setformValues(activeEvent);
         }
+        else {
+            setformValues(initEvent)
+        }
     }, [activeEvent, setformValues]);
 
 
